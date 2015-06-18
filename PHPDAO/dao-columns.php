@@ -46,7 +46,7 @@ $Engine=new Engine();
 
     <div align="center">
 
-      <h1>TABLES</h1>
+      <h1>COLUMNS</h1>
 
       <form method="post">
 
@@ -62,19 +62,19 @@ foreach($_SESSION['tables'] as $tablename=>$tablecheck)
 
         <div>
 
-        <table width="1000">
+        <table>
           <tr>
-            <th width="30">property</th>
-            <th width="30">finder</th>
-            <th width="100">COLUMN</th>
-            <th width="100">TYPE</th>
+            <th>property</th>
+            <th>finder</th>
+            <th>COLUMN</th>
+            <th>TYPE</th>
             <th width="30" title="Primary Key">PK</th>
             <th width="30" title="Unique Key">UQ</th>
             <th width="30" title="Foreign Key">FK</th>
             <th width="30" title="Not NULL">NN</th>
             <th width="30" title="Auto increment">AI</th>
             <th width="30" title="Has indexes">IDX</th>
-            <th width="150">REFERENCE</th>
+            <th>REFERENCE</th>
             <th>COLUMN COMMENT</th>
           </tr>
 <?php
