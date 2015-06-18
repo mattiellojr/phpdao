@@ -1,18 +1,31 @@
-PHP DAO scaffolder
+PHP DAO generator (scaffolder)
+==============================
 
-This is web application for creating DAO objects from your DB (MySQL) tables
+This is web application for creating Data Access Objects from your DB (MySQL).
+No need for configuration, no need for manual definition of tables, columns, etc.
+This app will read your MySQL database; tables, columns, references, indexes etc
+and generate DAO classes with CRUD(S) and finder methods automatically.
 
-1) start index.php inside PHPDAO folder and give credentials and access to your
-   database, these data will be stored inside 'models/DAO/DA.php' file for later
-   use by classes
-2) then PHP DAO will read all tables from given schema an ask you to select what
+Installation and run
+====================
+
+1) save PHPDAO app on your local web server and make 'models' subfolder writable
+   (PHP DAO will generate and write files here)
+
+2) start start DAOPHP app on local server: 'http://localhost/PHPDAO/index.php';
+   in web form give credentials and access your existing database, credentials
+   data will be stored inside 'models/DAO/DA.php' for later use by DAO classes
+
+3) then PHP DAO will read all tables from given schema an ask you to select what
    tables should be included in build (creating DAO classes) and what are object
-   names: singular is used for this object, plural for reference by other objects
-3) then PHP DAO will read all columns for selected tables, show their attributes
+   names: singular is used for this object,plural for reference by other objects
+
+4) then PHP DAO will read all columns for selected tables, show their attributes
    and you have to select what columns should be included in build and for which
    columns finders should be generated (indexed columns are selected by default)
-4) core dao classes will be created inside modules/DAO folder, and working classes
-   that extend them will be create inside modules folder. Every time when you run
+
+5) core dao classes will be created inside 'modules/DAO' subfolder, and classes
+   that extend them will be created inside 'modules' folder. Every time you run
    PHP DAO generator it will overwrite core classes inside 'modules/DAO/' folder
    and make backup of existing ones. Module classes inside modules folder (they
    should contain your own business logic) will not be overwritten. This way you
