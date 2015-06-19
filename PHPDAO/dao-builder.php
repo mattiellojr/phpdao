@@ -217,7 +217,7 @@ foreach($tables as $tablename=>$value)
       else
       {
         $daofinders.='  /**'.PHP_EOL
-                   . '  /* Column Finder'.PHP_EOL
+                   . '  /* Column '.$columnname.' Finder'.PHP_EOL
                    . '  /* @return object[]'.PHP_EOL
                    . '   */'.PHP_EOL
                    . '  public function findBy'.getCamelCase($columnname).'($'.$columnname.')'.PHP_EOL
@@ -235,7 +235,7 @@ foreach($tables as $tablename=>$value)
     $vars=implode(',',array_map(function($x){return '$'.$x;},$primkeys));
     $where=implode(' AND ',array_map(function($x){return $x."='$".$x."'";},$primkeys));
     $daofinders.='  /**'.PHP_EOL
-               . '  /* Compound Primary Key Finder'.PHP_EOL
+               . '  /* Composite Primary Key Finder'.PHP_EOL
                . '  /* @return object'.PHP_EOL
                . '   */'.PHP_EOL
                . '  public function findBy'.getCamelCase($name).'('.$vars.')'.PHP_EOL
@@ -285,6 +285,7 @@ foreach($tables as $tablename=>$value)
     $file=fopen($filename,'w');
 
     $content= '<?php'.PHP_EOL
+            . PHP_EOL
             . "require_once 'DAO/{$class}.dao.php';".PHP_EOL
             . PHP_EOL
             . '/**'.PHP_EOL
@@ -308,14 +309,14 @@ foreach($tables as $tablename=>$value)
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>DAO Objects</title>
+    <title>DAO Classes</title>
     <link type="text/css" rel="stylesheet" href="dao.css">
   </head>
   <body>
 
     <div align="center">
 
-      <h1>PHP DAO</h1>
+      <h1>CLASSES</h1>
 
       <table>
         <tr><th>The following DAO classes are created</th></tr>
@@ -323,7 +324,7 @@ foreach($tables as $tablename=>$value)
 
 foreach($tables as $tablename=>$value)
 {
-  echo '        <tr><td align="center">'.$tableobject[$tablename].'</td></tr>'.PHP_EOL;
+  echo '        <tr><td align="center"><b>'.$tableobject[$tablename].'</b></td></tr>'.PHP_EOL;
 }
 
 ?>

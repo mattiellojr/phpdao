@@ -115,7 +115,7 @@ abstract class EntityBase
   //////////////////////////////////////////////////////////////////////////////
 
   /**
-   * Get single primary key
+   * Get single primary key value
    * @return mixed
    */
   public function getId()
@@ -125,7 +125,7 @@ abstract class EntityBase
   }
 
   /**
-   * Return primary keys in array
+   * Returns primary keys in associative array
    * @return array
    */
   public function getIds()
@@ -383,7 +383,12 @@ abstract class EntityBase
 
   // ID FUNCTIONS //////////////////////////////////////////////////////////////
 
-
+  /**
+   * Returns the list of IDs and there are three possibilities:
+   * @param string $glue
+   * @param mixed $ids
+   * @return string
+   */
   private function getImplodedIds($glue,$ids)
   {
     $where=' ';
@@ -575,14 +580,15 @@ abstract class EntityBase
   /**
    * Finds rows from table according to given list of columns/values
    * @param array $conditions Array of table columns=>'vaule' pairs (conditions)
+   * @returns object[]
    * @throws Exception
    */
   public function find($conditions=0)
   {
     if(is_array($conditions))
     {
-      $sql='SELECT * FROM '.$this->table.' WHERE '.$this->getImplodedIds(' AND ',$conditions).' LIMIT 1';
-      $this->fetch($sql);
+      $sql='SELECT * FROM '.$this->table.' WHERE '.$this->getImplodedIds(' AND ',$conditions);
+      return $this->getSelfObjects($sql);
     }
     else
     {
